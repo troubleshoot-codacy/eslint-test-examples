@@ -1,0 +1,20 @@
+on:
+  push:
+
+jobs:
+  codacy-cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Codacy
+        run: |
+          //TODO: Run command to install and analyse, sepcify output file
+      - name: Upload SARIF file to GH
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: //TODO: Specific output file
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: eslint
