@@ -19,12 +19,12 @@ jobs:
       - name: Codacy
         run: |
           bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) install
-          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) analyze eslint -o results
+          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) analyze eslint -o eslint.sarif
       - name: Upload SARIF file to GH
         uses: github/codeql-action/upload-sarif@v3
         with:
           # Path to SARIF file relative to the root of the repository
-          sarif_file: results/eslint.sarif
+          sarif_file: eslint.sarif
           # Optional category for the results
           # Used to differentiate multiple results for one commit
           category: eslint
