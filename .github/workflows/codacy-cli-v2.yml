@@ -4,9 +4,18 @@ on:
 jobs:
   codacy-cli:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: npm install
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm install
       - name: Codacy
         run: |
           bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) install
