@@ -1,0 +1,30 @@
+on:
+  push:
+
+jobs:
+  codacy-cli:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [22.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: npm install
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm install
+      - name: Codacy
+        run: |
+          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) install
+          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) analyze eslint -o results
+      - name: Upload SARIF file to GH
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          # Path to SARIF file relative to the root of the repository
+          sarif_file: results/eslint.sarif
+          # Optional category for the results
+          # Used to differentiate multiple results for one commit
+          category: eslint
