@@ -8,7 +8,7 @@ var o = {
 };
 
 //fail
-const regex = /[0-9]/;
+const regex = /\d/;
 
 const regex2 = /\d/;
 
