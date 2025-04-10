@@ -19,7 +19,7 @@ jobs:
       - name: Codacy
         run: |
           bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) install
-          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) analyze -t eslint -o eslint.sarif
+          bash <(curl -Ls https://raw.githubusercontent.com/codacy/codacy-cli-v2/main/codacy-cli.sh) analyze -t eslint --format sarif -o eslint.sarif
       - name: Upload SARIF file to GH
         uses: github/codeql-action/upload-sarif@v3
         with:
