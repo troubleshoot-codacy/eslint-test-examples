@@ -12,6 +12,12 @@ const regex = /[0-9]/;
 
 const regex2 = /\d/;
 
+const regexBad = /[0-9]/;
+
+console.log(regexBad)
+
+const regexUnused = /\d/;
+
 var o = {d: 1};
 Object.defineProperty(o, 'c', {
   set: function(value) {
