@@ -1,0 +1,15 @@
+name: Create Neutral Status
+on: push
+
+jobs:
+  neutral-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Neutral Check
+        uses: LouisBrunner/checks-action@v2.0.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          name: "Manual Neutral Test"
+          conclusion: neutral
+          output: |
+            {"summary":"This is a test check with neutral conclusion"}
