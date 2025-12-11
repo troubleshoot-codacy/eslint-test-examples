@@ -10,6 +10,10 @@ var o = {
 //fail
 const regex = /[0-9]/;
 
+// otherfail
+const regexxx = /[0-9]/;
+
+
 const regex2 = /\d/;
 
 var o = {d: 1};
